@@ -1,14 +1,13 @@
-import React from "react"
+import React from "react";
+import RegisterForm from "../registerform";
 
-
-function Signup ({goBack}) {
+function Signup({ goBack }) {
   return (
     <div>
-      <p>You are registering</p>
-
+      <RegisterForm register_url={"http://localhost:8083/api/users/"} />
       <button onClick={goBack}>back</button>
     </div>
-  )
-};
+  );
+}
 
 export default Signup;

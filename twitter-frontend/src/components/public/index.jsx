@@ -9,18 +9,22 @@ const Public = (props) => {
 
   return (
     <div>
-      {view==="main" && 
-      (<>
-      <p>Login</p>
-      <button onClick={() => setView("login")}>Log in</button>
-      <p>Sign up</p>
-      <button onClick={() => setView("signup")}>Sign up</button>
-      </>)}
-      
+      {view === "main" && (
+        <>
+          <p>Login</p>
+          <button onClick={() => setView("login")}>Log in</button>
+          <p>Sign up</p>
+          <button onClick={() => setView("signup")}>Sign up</button>
+        </>
+      )}
 
-
-      {view==="login" && <Login goBack={() => setView('main')} />}
-      {view==="signup" && <Signup goBack={() => setView('main')} />}
+      {view === "login" && <Login goBack={() => setView("main")} />}
+      {view === "signup" && <Signup goBack={() => setView("main")} />}
+      {view === "portal" && (
+        <>
+          <p>portal</p>
+        </>
+      )}
     </div>
   );
 };
