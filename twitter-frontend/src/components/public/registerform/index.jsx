@@ -19,8 +19,10 @@ function RegisterForm({ register_url }) {
   };
 
   const register = async () => {
-    const body = { ...formData };
-
+    if (formData.password !== formData.passwordConfirmation) {
+      alert("Passwords do not match!");
+      return;
+    }
     try {
       const response = await fetch(register_url, {
         method: "POST",
@@ -34,7 +36,8 @@ function RegisterForm({ register_url }) {
       console.log(data);
       console.log("registrado");
     } catch (err) {
-      console.error("Register failed", err);
+      alert("Register Failed. Check for missing fields");
+      return;
     }
   };
   return (

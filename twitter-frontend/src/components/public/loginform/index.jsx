@@ -31,7 +31,8 @@ function LoginForm({ login_url }) {
       setIsLoggedIn(true);
       console.log(`Logged in ${token}`);
     } catch (err) {
-      console.error("Login failed", err);
+      alert("Login Failed. Check for missing fields");
+      return;
     }
   };
 
