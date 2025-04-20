@@ -4,8 +4,10 @@ const collection = 'tweets';
 
 const objectSchema = {
   content: { type: String, required: true },
-  likes: { type: Number, required: true, default: 0 },
+  likes: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }], default: [] },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+  // Campo opcional para respuestas
+  replyTo: { type: mongoose.Schema.Types.ObjectId, ref: 'tweets', default: null },
   comments: [
     {
       comment: { type: String },
