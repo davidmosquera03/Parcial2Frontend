@@ -36,20 +36,27 @@ function PostList() {
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
-    const confirmed = window.confirm("Are you sure you want to delete this post?");
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
     if (!confirmed) return;
-  
+
     const response = await fetch("http://localhost:8083/api/tweets", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         "x-access-token": token,
       },
-      body: JSON.stringify({ tweetId: id, userId: localStorage.getItem("userId") }),
+      body: JSON.stringify({
+        tweetId: id,
+        userId: localStorage.getItem("userId"),
+      }),
     });
+    if (response.status == 403) {
+      alert("You cannot erase Tweets from other users");
+    }
     fetchPosts();
   };
-  
 
   const handleReply = (originalPost) => {
     const replyContent = prompt("Reply to this post:");
@@ -62,7 +69,11 @@ function PostList() {
           "Content-Type": "application/json",
           "x-access-token": token,
         },
-        body: JSON.stringify({ content: replyContent, replyTo: originalPost._id, userId }),
+        body: JSON.stringify({
+          content: replyContent,
+          replyTo: originalPost._id,
+          userId,
+        }),
       }).then(() => fetchPosts());
     }
   };
@@ -76,7 +87,14 @@ function PostList() {
           <li key={post._id} style={{ marginBottom: "20px" }}>
             <strong>{post.user?.name || "Anon"}:</strong>{" "}
             {post.replyTo && (
-              <div style={{ background: "#f9f9f9", padding: "5px", marginBottom: "5px", borderLeft: "3px solid #ccc" }}>
+              <div
+                style={{
+                  background: "#f9f9f9",
+                  padding: "5px",
+                  marginBottom: "5px",
+                  borderLeft: "3px solid #ccc",
+                }}
+              >
                 <small>In reply to: </small>
                 <em>{post.replyTo.content}</em>
               </div>
