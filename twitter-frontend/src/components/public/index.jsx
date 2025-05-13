@@ -17,7 +17,6 @@ const Public = (props) => {
           <button onClick={() => setView("signup")}>Sign up</button>
         </>
       )}
-
       {view === "login" && <Login goBack={() => setView("main")} />}
       {view === "signup" && <Signup goBack={() => setView("main")} />}
       {view === "portal" && (
@@ -25,6 +24,14 @@ const Public = (props) => {
           <p>portal</p>
         </>
       )}
+      <button
+        onClick={() => {
+          throw new Error("An error!");
+        }}
+      >
+        Break the world
+      </button>
+      ;
     </div>
   );
 };
