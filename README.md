@@ -32,3 +32,8 @@ URL base de API es http://localhost:8083/api/
 
 - renderiza todos los campos de input
 - valida que las contraseñas coincidan
+
+## Postlists
+
+- renderiza posts existentes
+- actualiza cantidad de like al hacer clic
