@@ -6,6 +6,21 @@ import { AuthProvider } from "./context/AuthContext";
 import * as Sentry from "@sentry/react";
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
 
+import { GrowthBook, GrowthBookProvider } from "@growthbook/growthbook-react";
+
+const gb = new GrowthBook({
+  apiHost: "https://cdn.growthbook.io",
+  clientKey: "sdk-lrk3yecZ9VJIsWYC",
+  user: { id: "user-id-120" },
+  onFeatureUsage: (key, result) => {
+    console.log("Feature used:", key, result);
+  },
+});
+
+gb.loadFeatures().then(() =>
+  console.log("GrowthBook connected", gb.getFeatures())
+);
+
 Sentry.init({
   dsn: sentryDsn,
   // Setting this option to true will send default PII data to Sentry.
@@ -16,9 +31,11 @@ Sentry.init({
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <Sentry.ErrorBoundary fallback={<p>Something went wrong</p>}>
-        <App />
-      </Sentry.ErrorBoundary>
+      <GrowthBookProvider growthbook={gb}>
+        <Sentry.ErrorBoundary fallback={<p>Something went wrong</p>}>
+          <App />
+        </Sentry.ErrorBoundary>
+      </GrowthBookProvider>
     </AuthProvider>
   </StrictMode>
 );
