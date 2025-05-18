@@ -19,7 +19,20 @@ URL base de API es http://localhost:8083/api/
 - npm i
 - npm run dev
 
+## Sentry
+
+### Revisar error
+
+- ejecutar proyecto
+- hacer clic en botón 'Break the World'
+- abrir panel de desarrollador
+
 ## Pruebas Unitarias
+
+### Para correrlas
+
+- cd twitter-frontend
+- npm test
 
 ### Public
 
@@ -37,3 +50,13 @@ URL base de API es http://localhost:8083/api/
 
 - renderiza posts existentes
 - actualiza cantidad de like al hacer clic
+
+## Growthbook
+
+Renderiza botón o link
+
+### Para ver las dos posiblidades
+
+- ejecutar proyecto
+- ir a main.jsx y cambiar números del id
+- ctrl+s y revisar. Probabilidad es 50-50 asi que tal vez toque hacer varias veces.

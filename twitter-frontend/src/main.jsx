@@ -10,8 +10,8 @@ import { GrowthBook, GrowthBookProvider } from "@growthbook/growthbook-react";
 
 const gb = new GrowthBook({
   apiHost: "https://cdn.growthbook.io",
-  clientKey: "sdk-lrk3yecZ9VJIsWYC",
-  user: { id: "user-id-120" },
+  clientKey: import.meta.env.VITE_GROWTHBOOK_CLIENT_KEY,
+  user: { id: "user-id-123" },
   onFeatureUsage: (key, result) => {
     console.log("Feature used:", key, result);
   },
